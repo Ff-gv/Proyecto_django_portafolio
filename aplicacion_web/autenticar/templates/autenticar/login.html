@@ -1,1 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+{% block title %}Login | Pagina de bienvenida{% endblock title %}
+{% block style %}{% endblock style %}
+{% block content %}
+<h3 class="text-center mt-5">Ingresa al portal</h3>
+<form action=""method="POST">
+{% csrf_token %}
+    
+</form>
+{% endblock content %}
