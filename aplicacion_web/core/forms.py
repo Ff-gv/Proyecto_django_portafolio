@@ -1,7 +1,7 @@
 from django import forms
 from .models import Proyecto, Tarea
 from datetime import date
-class ProyectForm(forms.ModelForm):
+class ProyectoForm(forms.ModelForm):
     class Meta:
         model = Proyecto
         fields = ['nombre', 'descripcion', 'integrantes_totales', 'privado', 'fecha_limite']
@@ -48,12 +48,13 @@ class ProyectForm(forms.ModelForm):
         if integrantes_totales and integrantes_totales <= 0:
             raise forms.ValidationError("Integrantes deben ser mayor a 0")
         return integrantes_totales
+    
     def clean_nombre(self):
-        nombre = self.cleaned_data.get("nombre")
-        if nombre:
-            sin_espacios = nombre.replace(" ", "") 
-            if not sin_espacios.isalpha(): 
-                raise forms.ValidationError("Nombre solo debe contener letras")
+        nombre = self.cleaned_data["nombre"].strip()
+        if len(nombre) < 5:
+            raise forms.ValidationError(
+                "El nombre debe tener al menos 5 caracteres."
+            )
         return nombre
 
 class TareaForm(forms.ModelForm):

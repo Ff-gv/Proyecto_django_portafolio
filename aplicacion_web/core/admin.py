@@ -5,16 +5,16 @@ from .models import Tarea, Proyecto
 class ProyectoAdmin(admin.ModelAdmin):
         list_display=(
             'nombre',
-            'fecha',
+            'fecha_limite',
             'propietario',
-            'integrantes'
+            'integrantes_totales'
         )
         search_fields =(
             'nombre',
             'propietario'
         )    
         list_filter =(
-            'propietario'
+            'propietario',
             
         )
 @admin.register(Tarea)
@@ -22,7 +22,7 @@ class TareaAdmin(admin.ModelAdmin):
         list_display=(
             'nombre',
             'fecha',
-            'propietario',
+            'asignado_a',
             'proyecto',
             'estado',
             'asignado_a'
@@ -35,7 +35,7 @@ class TareaAdmin(admin.ModelAdmin):
 
         )    
         list_filter =(
-            'propietario',
+            'asignado_a',
             'estado'
             
         )

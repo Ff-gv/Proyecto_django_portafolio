@@ -133,5 +133,5 @@ MAILERS = {
 #crea el bloqueo y seguridad de mi proyecto, significa que deberia cambiar
 #un poco mi home...
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'

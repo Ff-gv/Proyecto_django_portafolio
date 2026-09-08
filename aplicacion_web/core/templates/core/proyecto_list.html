@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+
+{% block title %}Mis proyectos{% endblock title %}
+
+{% block content %}
+<h2>Mis proyectos</h2>
+<a href="{% url 'proyecto_create' %}">Crear proyecto</a>
+{% for proyecto in proyectos %}
+    <article>
+        <h3>{{ proyecto.nombre }}</h3>
+        <p>{{ proyecto.descripcion }}</p>
+        <a href="{% url 'proyecto_update' proyecto.pk %}">Editar</a>
+        <a href="{% url 'proyecto_delete' proyecto.pk %}">Eliminar</a>
+        <a href="{% url 'tarea_list' proyecto.pk %}">Ver tareas</a>
+    </article>
+{% empty %}
+    <p>No tienes proyectos todavía.</p>
+{% endfor %}
+{% endblock content %}
