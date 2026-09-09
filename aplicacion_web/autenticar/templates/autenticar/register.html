@@ -4,10 +4,10 @@
 {% block style %}{% endblock style %}
 {% block content %}
 <h3 class="text-center mt-5">Registro de usuario</h3>
-<form action="" method="POST">
+<form class="register-form" action="" method="POST">
 {% csrf_token %}
 {{ form.as_p }}
-<button type="submit">
+<button class="btn btn-dark" type="submit">
 Registrarse
 </button>
 </form>

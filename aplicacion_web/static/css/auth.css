@@ -11,3 +11,8 @@ form{
     padding-bottom: 10px;
     font-size: 20px;
 }
+form.register-form {
+    width: 90%;
+    max-width: 500px;
+    margin: 2rem auto;
+}

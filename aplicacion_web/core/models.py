@@ -11,6 +11,10 @@ class Proyecto(models.Model):
     privado = models.BooleanField(default=True)
     propietario = models.ForeignKey(
     settings.AUTH_USER_MODEL,
+    #usa como predeterminado User de django a menos
+    #que especifique un modelo user en especifico, lo
+    #cual en ese caso debo cambiar en settings.py para
+    #utilizar ese modelo de forma personalizada
     on_delete=models.CASCADE,
     related_name="proyectos",
 )
