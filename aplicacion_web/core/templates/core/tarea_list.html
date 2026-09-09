@@ -4,17 +4,25 @@
 
 {% block content %}
 <h2>Tareas de {{ proyecto.nombre }}</h2>
-<a href="{% url 'tarea_create' proyecto.pk %}">Crear tarea</a>
-{% for tarea in tareas %}
-    <article>
-        <h3>{{ tarea.nombre }}</h3>
-        <p>{{ tarea.descripcion }}</p>
-        <p>Estado: {{ tarea.get_estado_display }}</p>
-        <a href="{% url 'tarea_update' tarea.pk %}">Editar</a>
-        <a href="{% url 'tarea_delete' tarea.pk %}">Eliminar</a>
-    </article>
-{% empty %}
+<a class="btn btn-dark m-2"href="{% url 'tarea_create' proyecto.pk %}">Crear tarea</a>
+<!--dflex ayuda, activa flexbox, flex-column obviamente convierte a columna y align items center
+#centra-->
+<div class="d-flex flex-column align-items-center gap-4">
+   {% for tarea in tareas %}
+       <div class="card" style="width: 20rem;">
+           <div class="card-body">
+               <h3 class="card-title">{{ tarea.nombre }}</h3>
+               <p class="card-text">{{ tarea.descripcion }}</p>
+               <p>Estado: {{ tarea.get_estado_display }}</p>
+               <div class="d-flex flex-wrap justify-content-center gap-2">
+                   <a class="btn btn-dark" href="{% url 'tarea_update' tarea.pk %}">Editar</a>
+                   <a class="btn btn-dark" href="{% url 'tarea_delete' tarea.pk %}">Eliminar</a>
+               </div>
+           </div>
+        </div>
+   {% empty %}
     <p>Este proyecto no tiene tareas todavía.</p>
-{% endfor %}
-<a href="{% url 'proyecto_list' %}">Volver a proyectos</a>
+   {% endfor %}
+</div>
+<a class="btn btn-dark mt-3" href="{% url 'dashboard' %}">Volver a proyectos</a>
 {% endblock content %}

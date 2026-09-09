@@ -3,7 +3,6 @@ from .views import (
     DashboardView,
     ProyectoCreateView,
     ProyectoDeleteView,
-    ProyectoListView,
     ProyectoUpdateView,
     TareaCreateView,
     TareaDeleteView,
@@ -13,7 +12,6 @@ from .views import (
 
 urlpatterns = [
     path("", DashboardView.as_view(), name="dashboard"),
-    path("proyectos/", ProyectoListView.as_view(), name="proyecto_list"),
     path("proyectos/nuevo/", ProyectoCreateView.as_view(), name="proyecto_create"),
     path(
         "proyectos/<int:pk>/editar/",

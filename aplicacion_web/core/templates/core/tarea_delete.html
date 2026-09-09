@@ -4,10 +4,10 @@
 
 {% block content %}
 <h2>Eliminar tarea</h2>
-<p>¿Seguro que quieres eliminar "{{ object.nombre }}"?</p>
+<p>¿Seguro que quieres eliminar <b>tarea:</b> "{{ object.nombre }}"?</p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Sí, eliminar</button>
-    <a href="{% url 'tarea_list' object.proyecto_id %}">Cancelar</a>
+    <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+    <a class="btn btn-dark" href="{% url 'tarea_list' object.proyecto_id%}">Cancelar</a>
 </form>
 {% endblock content %}

@@ -4,9 +4,10 @@
 
 {% block content %}
 <h2>{% if object %}Editar tarea{% else %}Crear tarea{% endif %}</h2>
-<form method="post">
+<form method="post" class="d-flex flex-column align-items-center">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Guardar</button>
+    <button class="btn btn-dark" type="submit">Guardar</button>
+    <a class="btn btn-light mt-3"href="{% url 'dashboard' %}">Cancelar</a>
 </form>
 {% endblock content %}

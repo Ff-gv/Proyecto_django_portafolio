@@ -33,20 +33,13 @@ class ProyectoCreateView(LoginRequiredMixin,CreateView):
     model = Proyecto
     form_class = ProyectoForm
     template_name = "core/proyecto_form.html"
-    success_url = reverse_lazy("proyecto_list")
+    success_url = reverse_lazy("dashboard")
 
     def form_valid(self, form):
         form.instance.propietario = self.request.user
         #esto lista solamente a peticion del usuario que envia la solicitud
         return super().form_valid(form)
-    
-class ProyectoListView(LoginRequiredMixin,ListView):
-    model = Proyecto
-    template_name = "core/proyecto_list.html"
-    context_object_name = "proyectos"
-    def get_queryset(self):
-        return Proyecto.objects.filter(propietario=self.request.user)
-    #cuando el usuario logeado es igual al propietario del proyecto, regresa ese resultado
+
 class EsPropietarioProyectoMixin(UserPassesTestMixin):
     def test_func(self):
         proyecto = self.get_object()
@@ -57,11 +50,11 @@ class ProyectoUpdateView(LoginRequiredMixin,EsPropietarioProyectoMixin,UpdateVie
     model = Proyecto
     form_class = ProyectoForm
     template_name = 'core/proyecto_form.html'
-    success_url = reverse_lazy("proyecto_list")
+    success_url = reverse_lazy("dashboard")
 class ProyectoDeleteView(LoginRequiredMixin,EsPropietarioProyectoMixin,DeleteView):
     model = Proyecto
     template_name = "core/proyecto_delete.html"
-    success_url = reverse_lazy("proyecto_list")
+    success_url = reverse_lazy("dashboard")
 #con esto cubre todo lo que es crud de proyecto
 class TareaListView(LoginRequiredMixin,UserPassesTestMixin,ListView):
     model=Tarea
@@ -123,9 +116,7 @@ class TareaUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy(
-            "tarea_list",
-            kwargs={"proyecto_id": self.object.proyecto_id},
-        )
+            "dashboard")
 
 
 class TareaDeleteView(

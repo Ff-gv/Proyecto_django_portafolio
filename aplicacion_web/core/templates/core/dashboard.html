@@ -1,18 +1,27 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% block content %}
-<h2>Bienvenido, {{ user.username }}</h2>
-<a href="{% url 'proyecto_create' %}">Crear proyecto</a>
+<h2 class="mb-2">Bienvenido, {{ user.username }}</h2>
 
-<h3>Mis proyectos</h3>
-
+<div class="row justify-content-center g-4">
 {% for proyecto in proyectos %}
-    <h3>{{ proyecto.nombre }}</h3>
-    <p>{{ proyecto.descripcion }}</p>
-    <a href="{% url 'proyecto_update' proyecto.pk %}">Editar</a>
-    <a href="{% url 'proyecto_delete' proyecto.pk %}">Eliminar</a>
-    <a href="{% url 'tarea_list' proyecto.pk %}">Ver tareas</a>
+    <div class="card" style="width: 20rem;">
+    <div class="card-body">
+        <h3 class="card-title">Mis proyectos</h3>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{ proyecto.nombre }}</h6>
+        <p class="card-text">{{ proyecto.descripcion }}</p>
+        <div class="d-flex flex-wrap gap-2">
+                <a href="{% url 'proyecto_update' proyecto.pk %}" class="btn btn-dark">Editar proyecto</a>
+                <a href="{% url 'proyecto_delete' proyecto.pk %}" class="btn btn-dark">Eliminar proyecto</a>
+                <a href="{% url 'tarea_list' proyecto.pk %}" class="btn btn-dark">Ver tareas</a>
+            <a href="{% url 'tarea_create' proyecto.pk %}" class="btn btn-success">Crear tarea</a>
+        </div>
+    </div>
+    </div>
+    <!--recordar que proyecto.pk es identificar el proyecto especifico por su primary key-->
+
 {% empty %}
     <p>No tienes proyectos todavía.</p>
 {% endfor %}
+</div>
 {% endblock content %}
